@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url(./assets/background.png);
+}
+
+@font-face {
+  font-family: 'Gatorade-Black';
+  src: url(./fonts/Gatorade-Black.ttf);
+}
+
+@font-face {
+  font-family: 'Gatorade-Medium';
+  src: url(./fonts/Gatorade-Medium.ttf);
+}
+
+@font-face {
+  font-family: 'Gatorade-Light';
+  src: url(./fonts/Gatorade-Light.ttf);
+}
