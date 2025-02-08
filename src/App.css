@@ -8,6 +8,7 @@
   gap: 20px;
   font-family: 'Gatorade-Black';
   color: #fff;
+  overflow: hidden;
 }
 
 .roulette-container button {
@@ -110,4 +111,46 @@
 .modal button:hover {
   background-color: #fff;
   color: #000;
+}
+
+/* Laptop ONLY media query */
+
+@media (min-width: 1024px) and (max-width: 1440px) {
+  .roulette-container {
+    gap: 10px;
+  }
+
+  .city-selector {
+    gap: 30px;
+  }
+
+  .city-selector label {
+    font-size: 2.4rem;
+  }
+
+  .city-select-input {
+    padding: 10px 25px;
+    font-size: 1.4rem;
+  }
+
+  .random-number {
+    font-size: 2.2rem;
+  }
+
+  .modal {
+    padding: 30px;
+  }
+
+  .modal-h2 {
+    font-size: 2rem;
+  }
+
+  .modal-number {
+    font-size: 2rem;
+  }
+
+  .modal button {
+    padding: 15px 30px;
+    font-size: 1.4rem;
+  }
 }
