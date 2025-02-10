@@ -1,27 +1,38 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Wheel } from 'react-custom-roulette';
 import Modal from 'react-modal';
 import arrowImage from './assets/rayo-gatorade.png';
 
-const data = [
-  { option: '' },
-  { option: '' },
-  { option: '' },
-  { option: '' },
-  { option: '' },
-  { option: '' },
-  { option: '' },
-  { option: '' },
-  { option: '' },
-  { option: '' },
-];
-
-const cityRanges = {
-  bogota: 870,
-  itagui: 175,
-  bello: 255,
-  barranquilla: 195,
+const initialData = {
+  bogota: [
+    { option: '1' },
+    { option: '2' },
+    { option: '3' },
+    { option: '4' },
+    { option: '5' },
+    { option: '6' },
+    { option: '7' },
+    { option: '8' },
+  ],
+  itagui: [
+    { option: '1' },
+    { option: '2' },
+    { option: '3' },
+    { option: '4' },
+  ],
+  bello: [
+    { option: '1' },
+    { option: '2' },
+    { option: '3' },
+    { option: '4' },
+  ],
+  barranquilla: [
+    { option: '1' },
+    { option: '2' },
+    { option: '3' },
+    { option: '4' },
+  ],
 };
 
 const cityNames = {
@@ -31,14 +42,18 @@ const cityNames = {
   barranquilla: 'Barranquilla',
 };
 
-Modal.setAppElement('#root'); // Asegúrate de que el modal se monte en el elemento correcto
+Modal.setAppElement('#root');
 
 function App() {
   const [mustSpin, setMustSpin] = useState(false);
   const [prizeNumber, setPrizeNumber] = useState(0);
-  const [randomNumber, setRandomNumber] = useState(null);
   const [selectedCity, setSelectedCity] = useState('bogota');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [data, setData] = useState(initialData[selectedCity]);
+
+  useEffect(() => {
+    setData(initialData[selectedCity]);
+  }, [selectedCity]);
 
   const handleSpinClick = () => {
     const newPrizeNumber = Math.floor(Math.random() * data.length);
@@ -48,9 +63,6 @@ function App() {
 
   const handleStopSpinning = () => {
     setMustSpin(false);
-    const maxNumber = cityRanges[selectedCity];
-    const generatedNumber = Math.floor(Math.random() * maxNumber) + 1;
-    setRandomNumber(generatedNumber);
     setIsModalOpen(true);
   };
 
@@ -69,7 +81,7 @@ function App() {
             value={selectedCity}
             onChange={(e) => setSelectedCity(e.target.value)}
           >
-            {Object.keys(cityRanges).map((city) => (
+            {Object.keys(initialData).map((city) => (
               <option key={city} value={city}>
                 {cityNames[city]}
               </option>
@@ -95,7 +107,7 @@ function App() {
           overlayClassName="overlay"
         >
           <h2 className='modal-h2'>Número Generado</h2>
-          <p className='modal-number'>{randomNumber}</p>
+          <p className='modal-number'>{data[prizeNumber].option}</p>
           <button onClick={closeModal}>Cerrar</button>
         </Modal>
       </div>
